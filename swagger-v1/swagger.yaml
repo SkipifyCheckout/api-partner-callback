@@ -2,29 +2,31 @@ openapi: 3.0.0
 info:
   title: Partner Callback API
   description: "API callbacks that a merchant or ISV will implement as part of their\
-    \ integration with the GoCart platform. These are B2B integrations that GoCart's\
-    \ backend will make to the merchant's backend services. The GoCart team commonly\
+    \ integration with the Skipify platform. These are B2B integrations that Skipify's\
+    \ backend will make to the merchant's backend services. The Skipify team commonly\
     \ refers to these as **Delegated Callbacks** <p/> An example of a callback integration\
-    \ is the shipping and tax calculator. GoCart requests the merchant to provide\
+    \ is the shipping and tax calculator. Skipify requests the merchant to provide\
     \ shipping and tax details for an order based on the current shipping address\
     \ selected by the customer. When a customer selects a shipping address in the\
-    \ GoCart UI, GoCart will orchestrate a B2B call to the merchant's implementation\
+    \ Skipify UI, Skipify will orchestrate a B2B call to the merchant's implementation\
     \ of the shipping-and-taxes service method. The results of this request are displayed\
-    \ in the GoCart UI - allowing the customer to be informed of their shipping options\
+    \ in the Skipify UI - allowing the customer to be informed of their shipping options\
     \ and the associate costs."
   contact:
-    url: https://www.gocartpay.com/Docs
-    email: support@gocartpay.com
+    url: https://docs.skipify.com/docs
+    email: support@skipify.com
   license:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.1
 servers:
+- url: https://virtserver.swaggerhub.com/GoCartPay/gocart-partner-callback-api/1.0.1
+  description: SwaggerHub API Auto Mocking
 - url: https://virtserver.swaggerhub.com/GoCartPay/partner-callback-api/1.0.1
   description: SwaggerHub API Auto Mocking
 tags:
 - name: merchant-integrations
-  description: Calls used by GoCart integration partners
+  description: Calls used by Skipify integration partners
 paths:
   /shipping-and-taxes:
     post:
