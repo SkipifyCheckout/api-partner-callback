@@ -15,7 +15,7 @@ info:
 servers:
   # Added by API Auto Mocking Plugin
   - description: SwaggerHub API Auto Mocking
-    url: https://virtserver.swaggerhub.com/Skipify/skipify-partner-callback-api/1.0.1
+    url: https://virtserver.swaggerhub.com/Skipify/partner-callback-api/1.0.1
 tags:
 - name: merchant-integrations
   description: Calls used by Skipify integration partners
