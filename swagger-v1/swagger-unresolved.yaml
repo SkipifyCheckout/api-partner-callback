@@ -1,17 +1,10 @@
+---
 openapi: 3.0.0
 info:
   title: Partner Callback API
-  description: "API callbacks that a merchant or ISV will implement as part of their\
-    \ integration with the Skipify platform. These are B2B integrations that Skipify's\
-    \ backend will make to the merchant's backend services. The Skipify team commonly\
-    \ refers to these as **Delegated Callbacks** <p/> An example of a callback integration\
-    \ is the shipping and tax calculator. Skipify requests the merchant to provide\
-    \ shipping and tax details for an order based on the current shipping address\
-    \ selected by the customer. When a customer selects a shipping address in the\
-    \ Skipify UI, Skipify will orchestrate a B2B call to the merchant's implementation\
-    \ of the shipping-and-taxes service method. The results of this request are displayed\
-    \ in the Skipify UI - allowing the customer to be informed of their shipping options\
-    \ and the associate costs."
+  description: API callbacks that a merchant or ISV will implement as part of their integration with the Skipify platform. These are B2B integrations that Skipify's backend will make to the merchant's backend services. The Skipify team commonly refers to these as **Delegated Callbacks**
+    <p/> 
+    An example of a callback integration is the shipping and tax calculator. Skipify requests the merchant to provide shipping and tax details for an order based on the current shipping address selected by the customer. When a customer selects a shipping address in the Skipify UI, Skipify will orchestrate a B2B call to the merchant's implementation of the shipping-and-taxes service method. The results of this request are displayed in the Skipify UI - allowing the customer to be informed of their shipping options and the associate costs.
   contact:
     url: https://docs.skipify.com/docs
     email: support@skipify.com
@@ -20,8 +13,9 @@ info:
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   version: 1.0.1
 servers:
-- url: https://virtserver.swaggerhub.com/Skipify/partner-callback-api/1.0.1
-  description: SwaggerHub API Auto Mocking
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/Skipify/partner-callback-api/1.0.1
 tags:
 - name: merchant-integrations
   description: Calls used by Skipify integration partners
@@ -30,10 +24,8 @@ paths:
     post:
       tags:
       - merchant-integrations
-      summary: Calculates shipping and tax for an order for the respective shipping
-        options.
-      description: Calculates the shipping and tax charges for an order for the respective
-        shipping options.
+      summary: Calculates shipping and tax for an order for the respective shipping options.
+      description: Calculates the shipping and tax charges for an order for the respective shipping options.
       operationId: calculateShippingAndTax
       requestBody:
         description: Shipping and tax request payload.
@@ -43,20 +35,20 @@ paths:
               $ref: '#/components/schemas/ShippingAndTaxRequest'
         required: true
       responses:
-        "200":
+        '200':
           description: Shipping and tax calculated
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/ShippingAndTaxResponse'
-        "400":
-          description: "invalid input, object invalid"
+        '400':
+          description: invalid input, object invalid
         default:
           description: Unexpected error
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ExceptionResponse'
+                $ref: 'https://api.swaggerhub.com/domains/Skipify/skipify-core-domain/1.0.1#/components/schemas/ExceptionResponse'
 components:
   schemas:
     ShippingAndTaxRequest:
@@ -108,8 +100,7 @@ components:
       properties:
         shippingAddressId:
           type: string
-          description: Send back the value provided in the request. This value is
-            used for correlation and validation purposes.
+          description: Send back the value provided in the request. This value is used for correlation and validation purposes.
           format: uuid
           example: 53e2a852-be23-11eb-8529-0242ac130003
         currencyCode:
@@ -123,16 +114,14 @@ components:
           minItems: 0
           uniqueItems: true
           type: array
-          description: The collection of shipping options for the order can include
-            zero to 10 shipping options.
+          description: The collection of shipping options for the order can include zero to 10 shipping options.
           items:
             $ref: '#/components/schemas/Shipping'
         preferredShippingOptionId:
           maximum: 10
           minimum: 0
           type: integer
-          description: The prefered pre-selected shipping option identifier ('id')
-            from the shippingOptions array.
+          description: The prefered pre-selected shipping option identifier ('id') from the shippingOptions array.
           example: 1
         tax:
           minimum: 0
@@ -150,8 +139,7 @@ components:
           maximum: 10
           minimum: 0
           type: integer
-          description: A numeric identifier for this option. This id is used to demaracate
-            the default selected shipping option.
+          description: A numeric identifier for this option. This id is used to demaracate the default selected shipping option.
           example: 1
         name:
           type: string
@@ -161,13 +149,4 @@ components:
           type: number
           format: double
           example: 25.98
-      description: "Details for a single shipping option. For instance, shipping for\
-        \ 2 day versus next day versus ground freight."
-    ExceptionResponse:
-      type: object
-      properties:
-        error:
-          type: string
-          nullable: true
-          readOnly: true
-      additionalProperties: false
+      description: Details for a single shipping option. For instance, shipping for 2 day versus next day versus ground freight.
